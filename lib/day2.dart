@@ -37,14 +37,15 @@ String part2(List<String> boxIDs) {
   // Compare each string to the next one in the list
   // Exit if a match (-1 character) is found
   for (var i = 0; i < boxIDs.length; i++) {
-    var differences = 0;
+    List<int> differences = [];
     for (var j = 0; j < boxIDs[i].length; j++) {
       if (boxIDs[i][j] != boxIDs[i+1][j]) {
-        differences++;
+        differences.add(j);
       }
     }
-    if (differences <= 1) {
-      return boxIDs[i];
+    if (differences.length == 1) {
+      int pos = differences[0];
+      return boxIDs[i].substring(0, pos) + boxIDs[i].substring(pos+1);
     }
   }
   return "";
